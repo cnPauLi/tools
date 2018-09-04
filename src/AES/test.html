@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="./aes.js"></script>
+    <script type="text/javascript" src="./pad-zeropadding.js"></script>
+</head>
+<body>
+
+
+<script type="text/javascript">
+
+    var data = "test";//加密字符串
+
+    var key = CryptoJS.enc.Latin1.parse('@12345678912345!');//密钥
+    var iv = CryptoJS.enc.Latin1.parse('@12345678912345!');//与密钥保持一致
+    //加密
+    var data = JSON.stringify(data);//将数据对象转换为json字符串
+    var encrypted = CryptoJS.AES.encrypt(data, key, {
+        iv: iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.ZeroPadding
+    });
+    encrypted = encodeURIComponent(encrypted);
+    document.write(decrypted);//输出加密后的字符串
+
+
+    //解密
+
+    var data = "加密的字符串";
+
+    //key和iv和加密的时候一致
+
+    var decrypted = CryptoJS.AES.decrypt(data, key, {iv: iv, padding: CryptoJS.pad.ZeroPadding});
+    decrypted = decrypted.toString(CryptoJS.enc.Utf8);
+    document.write(decrypted);//输出解密后的数据
+</script>
+</body>
+</html>
